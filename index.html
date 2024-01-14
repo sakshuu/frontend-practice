@@ -1,0 +1,240 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
+  </body>
+</html>
+
+ -->
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: "Inter";
+        }
+
+        .main-container {
+            width: 60%;
+            margin: auto;
+            background-color: rgb(230, 238, 236);
+        }
+
+        .main-container h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .containers {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 2px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .product-item-card {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            height: 280px;
+            margin: 15px;
+            padding: 10px;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .product-name {
+            display: flex;
+        }
+
+        .product-name h4 {
+            padding: 10px;
+        }
+
+        .h5 {
+            padding: 13px;
+            font-size: 13px;
+        }
+
+        .product-price {
+            display: flex;
+        }
+
+        .image-size {
+            height: 180px;
+            width: 200px;
+        }
+
+        .product-price h6 {
+            padding: 10px;
+        }
+
+        .h6 {
+            text-decoration: line-through;
+            font-weight: 300;
+        }
+
+        button {
+            height: 35px;
+            margin: 30px;
+            color: black;
+            font-weight: bold;
+            border: none;
+            background-color: rgb(229, 227, 224);
+        }
+
+        .main-button {
+            width: 110px;
+            height: 35px;
+            margin: 30px;
+            color: black;
+            font-weight: bold;
+            border: none;
+            background-color: rgb(229, 227, 224);
+        }
+
+        .main-button.active {
+            background-color: rgb(9, 9, 9);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <h1>SELECT YOUR CHOICE</h1>
+        <div class="containers">
+            <div class="button-container">
+                <button onclick="displayProducts('Men', this)" class="main-button" id="menBtn">Men</button>
+                <button onclick="displayProducts('Women', this)" class="main-button" id="womenBtn">Women</button>
+                <button onclick="displayProducts('Kids', this)" class="main-button" id="kidsBtn">Kids</button>
+            </div>
+            <div class="product-container" id="products"></div>
+        </div>
+    </div>
+
+    <!-- <script>
+        let productContainer = document.getElementById("products");
+        let menBtn = document.getElementById("menBtn");
+        let womenBtn = document.getElementById("womenBtn");
+        let kidsBtn = document.getElementById("kidsBtn");
+
+        let displayProducts = async (category, btn) => {
+            // Reset all buttons to default style
+            menBtn.classList.remove("active");
+            womenBtn.classList.remove("active");
+            kidsBtn.classList.remove("active");
+
+            // Set the clicked button to active style
+            btn.classList.add("active");
+
+            let products = await fetch("https://cdn.shopify.com/s/files/1/0564/3685/0790/files/multiProduct.json");
+            productContainer.innerHTML = "";
+            let finalProducts = await products.json();
+
+            finalProducts.categories.forEach(categoryData => {
+                if (!category || categoryData.category_name.toLowerCase() === category.toLowerCase()) {
+                    categoryData.category_products.forEach(product => {
+                        productContainer.innerHTML += `
+                            <div class="product-item-card" id="product">
+                                <img src="${product.image}" class="image-size"/>
+                                <div class="product-name">
+                                    <h4>${product.title}</h4>
+                                    <ul class="h5">
+                                        <li>${product.vendor}</li>
+                                    </ul>
+                                </div>
+                                <div class="product-price">
+                                    <h6>Rs ${product.price} </h6>
+                                    <h6 class="h6"> ${product.compare_at_price} </h6>
+                                    <h6>${Math.ceil((product.compare_at_price - product.price) / product.compare_at_price * 100)}.00 %</h6>
+                                </div>
+                                <button>Add To Cart</button>
+                            </div>`;
+                    });
+                }
+            });
+            displayProducts(); 
+        }
+        </script> -->
+
+        <script>
+          let productContainer = document.getElementById("products");
+          let menBtn = document.getElementById("menBtn");
+          let womenBtn = document.getElementById("womenBtn");
+          let kidsBtn = document.getElementById("kidsBtn");
+      
+          let displayProducts = async (category, btn) => {
+              // Reset all buttons to default style
+              menBtn.classList.remove("active");
+              womenBtn.classList.remove("active");
+              kidsBtn.classList.remove("active");
+      
+              // Set the clicked button to active style
+              btn.classList.add("active");
+      
+              let products = await fetch("https://cdn.shopify.com/s/files/1/0564/3685/0790/files/multiProduct.json");
+              productContainer.innerHTML = "";
+              let finalProducts = await products.json();
+      
+              finalProducts.categories.forEach(categoryData => {
+                  if (!category || categoryData.category_name.toLowerCase() === category.toLowerCase()) {
+                      categoryData.category_products.forEach(product => {
+                          productContainer.innerHTML += `
+                              <div class="product-item-card" id="product">
+                                  <img src="${product.image}" class="image-size"/>
+                                  <div class="product-name">
+                                      <h4>${product.title}</h4>
+                                      <ul class="h5">
+                                          <li>${product.vendor}</li>
+                                      </ul>
+                                  </div>
+                                  <div class="product-price">
+                                      <h6>Rs ${product.price} </h6>
+                                      <h6 class="h6"> ${product.compare_at_price} </h6>
+                                      <h6>${Math.ceil((product.compare_at_price - product.price) / product.compare_at_price * 100)}.00 %</h6>
+                                  </div>
+                                  <button>Add To Cart</button>
+                              </div>`;
+                      });
+                  }
+              });
+          }
+      </script>
+      
+      </body>
+
+</html>
